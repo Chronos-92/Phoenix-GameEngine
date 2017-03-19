@@ -5,11 +5,15 @@ Module ServerUDP
 
     Private server As NetServer
     Private config As NetPeerConfiguration
+    Private indexmapper As Dictionary(Of Integer, Long)
 
     Public Sub InitNetworking()
         ' Initialize our messages and messagetypes
         InitTypes()
         InitMessages()
+
+        ' Set up our local variables.
+        indexmapper = New Dictionary(Of Integer, Long)()
 
         ' Create a new config, set it up and create our main server handler.
         config = New NetPeerConfiguration("Phoenix")
@@ -19,7 +23,11 @@ Module ServerUDP
         server.RegisterReceivedCallback(New SendOrPostCallback(AddressOf HandleReceivedData), New SynchronizationContext())
     End Sub
 
-    Public Sub SendDataTo(Id As Long, Data As NetBuffer)
+    Public Sub SendDataTo(Index As Integer, Data As NetBuffer)
+        SendData(indexmapper(Index), Data)
+    End Sub
+
+    Private Sub SendData(Id As Long, Data As NetBuffer)
         Dim Message = server.CreateMessage()
         Message.Write(Data)
         server.SendMessage(Message, GetConnectionFromId(Id), NetDeliveryMethod.ReliableOrdered)
@@ -37,8 +45,6 @@ Module ServerUDP
         GetConnectionFromId = server.Connections.Where(Function(x) x.RemoteUniqueIdentifier = Id).Single()
     End Function
 
-    Dim indexmapper As Dictionary(Of Integer, Long) = New Dictionary(Of Integer, Long)()
-
     Public Sub AddNetworkId(Id As Long)
         If Not indexmapper.Any(Function(x) x.Value = Id) Then
             indexmapper.Add(GetNewIndex(), Id)
@@ -55,7 +61,13 @@ Module ServerUDP
         GetIndexFromNetworkId = indexmapper.Where(Function(x) x.Value = Id).Single().Key
     End Function
 
-    Private Function GetNewIndex()
-        GetNewIndex = Enumerable.Range(0, GameOptions.General.MaxPlayers).Except(indexmapper.Keys).First()
+    Private Function GetNewIndex() As Boolean
+        Dim available = Enumerable.Range(0, GameOptions.General.MaxPlayers).Except(indexmapper.Keys)
+        If available.Count() < 1 Then
+            GetNewIndex = False
+        Else
+            GetNewIndex = available.First()
+        End If
+
     End Function
 End Module
