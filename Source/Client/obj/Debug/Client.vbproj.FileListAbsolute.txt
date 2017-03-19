@@ -46,3 +46,14 @@ C:\Users\p-puk\Desktop\Phoenix\Build\Client\Client.xml
 C:\Users\p-puk\Desktop\Phoenix\Source\Client\obj\Debug\Client.exe
 C:\Users\p-puk\Desktop\Phoenix\Source\Client\obj\Debug\Client.xml
 C:\Users\p-puk\Desktop\Phoenix\Source\Client\obj\Debug\Client.pdb
+D:\mijn documenten\GitHub\Phoenix-GameEngine\Build\Client\Client.exe.config
+D:\mijn documenten\GitHub\Phoenix-GameEngine\Build\Client\Client.exe
+D:\mijn documenten\GitHub\Phoenix-GameEngine\Build\Client\Client.pdb
+D:\mijn documenten\GitHub\Phoenix-GameEngine\Build\Client\Client.xml
+D:\mijn documenten\GitHub\Phoenix-GameEngine\Source\Client\obj\Debug\Client.vbprojResolveAssemblyReference.cache
+D:\mijn documenten\GitHub\Phoenix-GameEngine\Source\Client\obj\Debug\Client.FrmLogin.resources
+D:\mijn documenten\GitHub\Phoenix-GameEngine\Source\Client\obj\Debug\Client.Resources.resources
+D:\mijn documenten\GitHub\Phoenix-GameEngine\Source\Client\obj\Debug\Client.vbproj.GenerateResource.Cache
+D:\mijn documenten\GitHub\Phoenix-GameEngine\Source\Client\obj\Debug\Client.exe
+D:\mijn documenten\GitHub\Phoenix-GameEngine\Source\Client\obj\Debug\Client.xml
+D:\mijn documenten\GitHub\Phoenix-GameEngine\Source\Client\obj\Debug\Client.pdb
