@@ -46,10 +46,11 @@ Module ServerUDP
     End Function
 
     Public Sub AddNetworkId(Id As Long)
-        If Not indexmapper.Any(Function(x) x.Value = Id) Then
-            indexmapper.Add(GetNewIndex(), Id)
+        Dim Index As Integer
+        If Not indexmapper.Any(Function(x) x.Value = Id) AndAlso GetNewIndex(Index) Then
+            indexmapper.Add(Index, Id)
         Else
-            Throw New Exception("Unable to add duplicate User Id!")
+            Console.WriteLine(String.Format("ERROR: Either Id {0} already exists or index list is full!", Id))
         End If
     End Sub
 
@@ -61,12 +62,14 @@ Module ServerUDP
         GetIndexFromNetworkId = indexmapper.Where(Function(x) x.Value = Id).Single().Key
     End Function
 
-    Private Function GetNewIndex() As Boolean
+    Private Function GetNewIndex(ByRef Index) As Boolean
         Dim available = Enumerable.Range(0, GameOptions.General.MaxPlayers).Except(indexmapper.Keys)
         If available.Count() < 1 Then
+            Index = -1
             GetNewIndex = False
         Else
-            GetNewIndex = available.First()
+            Index = available.First()
+            GetNewIndex = True
         End If
 
     End Function
