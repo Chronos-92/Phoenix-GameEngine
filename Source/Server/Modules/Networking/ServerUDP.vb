@@ -61,7 +61,7 @@ Module ServerUDP
     Public Function GetIndexFromNetworkId(Id As Long) As Integer
         GetIndexFromNetworkId = indexmapper.Where(Function(x) x.Value = Id).Single().Key
     End Function
-
+          
     Private Function GetNewIndex(ByRef Index) As Boolean
         Dim available = Enumerable.Range(0, GameOptions.General.MaxPlayers).Except(indexmapper.Keys)
         If available.Count() < 1 Then

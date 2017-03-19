@@ -1,12 +1,9 @@
 ﻿Imports System.Windows.Forms
 
 Public Class FrmLogin
+#Region "Frm Code"
     Private Sub FrmLogin_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         StartUp()
-    End Sub
-
-    Private Sub FrmLogin_FormClosed(sender As Object, e As FormClosedEventArgs) Handles Me.FormClosed
-        DisconnectFromServer()
     End Sub
 
     Private Sub TmrMenuLoop_Tick(sender As Object, e As EventArgs) Handles TmrMenuLoop.Tick
@@ -21,4 +18,20 @@ Public Class FrmLogin
             PnlControls.Visible = True
         End If
     End Sub
+
+#End Region
+
+#Region "Controls"
+    Private Sub BtnLogin_Click(sender As Object, e As EventArgs) Handles BtnLogin.Click
+
+    End Sub
+
+    Private Sub BtnRegister_Click(sender As Object, e As EventArgs) Handles BtnRegister.Click
+
+    End Sub
+
+    Private Sub BtnExit_Click(sender As Object, e As EventArgs) Handles BtnExit.Click
+        DisconnectFromServer()
+    End Sub
+#End Region
 End Class
